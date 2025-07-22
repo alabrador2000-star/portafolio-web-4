@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrián Labrador | Portafolio de Edición Fotográfica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-bg: #121212;
+            --color-surface: #1e1e1e;
+            --color-surface-light: #2d2d2d;
+            --color-text: #f0f0f0;
+            --color-text-light: #b0b0b0;
+            --color-accent: #1abc9c;
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            min-height: 100vh;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header - Cabecera minimalista */
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            position: relative;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-weight: 400;
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--color-text);
+            margin: 0;
+        }
+
+        .title-divider {
+            color: var(--color-text-light);
+            font-weight: 300;
+            font-size: 1.8rem;
+        }
+
+        .profession {
+            font-weight: 300;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            margin: 0;
+        }
+
+        .subtitle {
+            font-weight: 300;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .subtitle::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 1px;
+            background: var(--color-accent);
+        }
+
+        /* Sección de habilidades */
+        .skills-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-weight: 400;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--color-surface);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: var(--color-surface-light);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+        }
+
+        .skill-title {
+            font-weight: 400;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text);
+            margin-bottom: 15px;
+        }
+
+        .skill-desc {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        /* Sección de proyectos */
+        .projects-section {
+            margin-bottom: 80px;
+        }
+
+        .project {
+            margin-bottom: 60px;
+        }
+
+        /* Portafolio - Slider */
+        .portfolio-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin-bottom: 25px;
+            overflow: auto;
+            max-height: 80vh;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            overflow: visible;
+            border-radius: var(--border-radius);
+            transform-origin: center top;
+            transition: transform 0.1s ease;
+            margin: 0 auto;
+        }
+
+        .img-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+
+        .img-container img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .img-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
+        }
+
+        .slider-bar {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: white;
+            z-index: 3;
+            cursor: ew-resize;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+            transition: background 0.2s;
+        }
+
+        .slider-bar:hover, .slider-circle:hover {
+            background: var(--color-accent);
+        }
+
+        .slider-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--color-surface);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+            cursor: ew-resize;
+            transition: background 0.2s;
+            font-size: 1.1rem;
+        }
+
+        /* Descripción de trabajo */
+        .work-description {
+            text-align: center;
+            max-width: 700px;
+            margin: 50px auto 40px;
+            font-size: 1.1rem;
+            padding: 25px;
+            color: var(--color-text-light);
+            line-height: 1.8;
+            font-weight: 300;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sección de contacto */
+        .contact-section {
+            text-align: center;
+            padding: 50px 40px;
+            background: var(--color-surface);
+            border-radius: var(--border-radius);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .contact-text {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--color-accent);
+            color: var(--color-surface);
+            font-weight: 400;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 16px 38px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .contact-btn:hover {
+            background: #16a085;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0 30px;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            margin-top: 20px;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-text {
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Loader */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px 0;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(26, 188, 156, 0.2);
+            border-top: 5px solid var(--color-accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Grid de proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .header-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .title-divider {
+                display: none;
+            }
+        }
+
+        @media (max-width: 992px) {
+            header {
+                padding: 30px 0 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .profession {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-btn {
+                padding: 14px 30px;
+                font-size: 0.9rem;
+            }
+            
+            .projects-grid {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .profession {
+                font-size: 0.95rem;
+            }
+            
+            .section-title {
+                font-size: 0.95rem;
+            }
+            
+            .contact-section {
+                padding: 35px 20px;
+            }
+            
+            .projects-grid {
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cabecera minimalista -->
+        <header>
+            <div class="header-container">
+                <h1>Adrián Labrador</h1>
+                <div class="title-divider">|</div>
+                <div class="profession">Editor de Fotografía</div>
+            </div>
+            <div class="subtitle">Portafolio de Edición Fotográfica</div>
+        </header>
+        
+        <!-- Sección de habilidades -->
+        <section class="skills-section">
+            <div class="section-title">Artesanía Digital al servicio de la imagen</div>
+            
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="skill-title">Teoría del Color y Colorimetría</h3>
+                    <p class="skill-desc">Aplicación científica del color para lograr armonía cromática y equilibrio visual en cada imagen, asegurando que los tonos transmitan la emoción deseada.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3 class="skill-title">Revelado Digital Profesional</h3>
+                    <p class="skill-desc">Transformación de archivos RAW en imágenes impactantes mediante técnicas avanzadas que respetan la esencia original mientras mejoran su potencial visual.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="skill-title">Retoque de Piel y Estética</h3>
+                    <p class="skill-desc">Armonización estética con enfoque en la naturalidad. Retoques que realzan la belleza preservando texturas y características únicas para resultados auténticos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de proyectos -->
+        <section class="projects-section">
+            <div class="section-title">Transformaciones Before & After</div>
+            
+            <!-- Contenedor dinámico para proyectos -->
+            <div class="projects-grid" id="projects-container">
+                <!-- Los proyectos se cargarán automáticamente aquí -->
+            </div>
+            
+            <div class="work-description">
+                <p>Trabajo preciso, visualmente equilibrado y con entrega rápida.</p>
+                <p>Cada proyecto recibe atención meticulosa para garantizar resultados que superan expectativas y conservan la esencia de la imagen original.</p>
+            </div>
+        </section>
+        
+        <!-- Sección de contacto -->
+        <section class="contact-section">
+            <p class="contact-text">
+                Si buscas un editor comprometido con la calidad visual, el detalle y la estética fotográfica, contáctame para discutir tu proyecto.
+            </p>
+            <a href="tel:+5358316752" class="contact-btn">
+                <i class="fas fa-phone"></i> +53 5831 6752
+            </a>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <p class="footer-text">Adrián Labrador | Editor de Fotografía Profesional</p>
+            <p>© 2024 Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        // Lista de proyectos con sus imágenes
+        const proyectos = [
+            { antes: "proyectos/antes1.jpg", despues: "proyectos/despues1.jpg" },
+            { antes: "proyectos/antes2.jpg", despues: "proyectos/despues2.jpg" },
+            { antes: "proyectos/antes3.jpg", despues: "proyectos/despues3.jpg" },
+            { antes: "proyectos/antes4.jpg", despues: "proyectos/despues4.jpg" },
+            { antes: "proyectos/antes5.jpg", despues: "proyectos/despues5.jpg" },
+            { antes: "proyectos/antes6.jpg", despues: "proyectos/despues6.jpg" },
+            { antes: "proyectos/antes7.jpg", despues: "proyectos/despues7.jpg" },
+            { antes: "proyectos/antes8.jpg", despues: "proyectos/despues8.jpg" }
+        ];
+
+        // Función para cargar proyectos
+        function cargarProyectos() {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = '';
+            
+            proyectos.forEach((proyecto, index) => {
+                const projectElement = document.createElement('div');
+                projectElement.className = 'project';
+                projectElement.innerHTML = `
+                    <div class="portfolio-container">
+                        <div class="slider-container" id="slider-${index}">
+                            <div class="img-container">
+                                <img class="img-after" src="${proyecto.despues}" alt="Después">
+                                <img class="img-before" src="${proyecto.antes}" alt="Antes">
+                                <div class="slider-bar"></div>
+                                <div class="slider-circle">↔</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(projectElement);
+            });
+            
+            // Inicializar sliders después de cargar los proyectos
+            initSliders();
+        }
+
+        // Función para inicializar sliders
+        function initSliders() {
+            document.querySelectorAll('.slider-container').forEach(sliderContainer => {
+                const beforeImg = sliderContainer.querySelector('.img-before');
+                const sliderBar = sliderContainer.querySelector('.slider-bar');
+                const sliderCircle = sliderContainer.querySelector('.slider-circle');
+                let isDragging = false;
+                let currentScale = 1;
+
+                // Slider preciso
+                const moveSlider = (e) => {
+                    e.preventDefault();
+                    const containerRect = sliderContainer.getBoundingClientRect();
+                    let xPos = e.clientX - containerRect.left;
+                    xPos = Math.max(0, Math.min(xPos, containerRect.width));
+                    const percent = (xPos / containerRect.width) * 100;
+
+                    beforeImg.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0% 100%)`;
+                    sliderBar.style.left = `${percent}%`;
+                    sliderCircle.style.left = `${percent}%`;
+                };
+
+                // Eventos del slider
+                [sliderBar, sliderCircle].forEach(element => {
+                    element.addEventListener('mousedown', (e) => {
+                        isDragging = true;
+                        moveSlider(e);
+                    });
+                });
+
+                document.addEventListener('mouseup', () => isDragging = false);
+                document.addEventListener('mousemove', (e) => {
+                    if (isDragging) moveSlider(e);
+                });
+
+                // Touch events
+                sliderContainer.addEventListener('touchstart', (e) => {
+                    isDragging = true;
+                    moveSlider(e.touches[0]);
+                }, { passive: false });
+                document.addEventListener('touchend', () => isDragging = false);
+                document.addEventListener('touchmove', (e) => {
+                    if (isDragging) {
+                        e.preventDefault();
+                        moveSlider(e.touches[0]);
+                    }
+                }, { passive: false });
+
+                // Zoom con Ctrl+Scroll
+                sliderContainer.addEventListener('wheel', (e) => {
+                    if (e.ctrlKey) {
+                        e.preventDefault();
+                        const delta = e.deltaY > 0 ? -0.1 : 0.1;
+                        currentScale = Math.min(Math.max(0.5, currentScale + delta), 3);
+                        sliderContainer.style.transform = `scale(${currentScale})`;
+                    }
+                }, { passive: false });
+            });
+        }
+
+        // Cargar proyectos cuando el documento esté listo
+        document.addEventListener('DOMContentLoaded', cargarProyectos);
+    </script>
+</body>
+</html>
